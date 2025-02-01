@@ -1,0 +1,20 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# SSL data
+data/auto-ssl/*
+!data/auto-ssl/.gitkeep
+
+# System files
+.DS_Store
+*.swp
+*.swo
+
+# Log files
+*.log
+
+# Editor directories
+.idea/
+.vscode/ 

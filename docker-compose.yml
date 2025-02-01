@@ -1,0 +1,23 @@
+services:
+  openresty:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./config/nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro
+      - ./src/lua:/usr/local/openresty/lualib/custom:ro
+      - ./data/auto-ssl:/etc/resty-auto-ssl:rw
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+    restart: unless-stopped
+    networks:
+      - common-network
+
+networks:
+  common-network:
+    external: true
